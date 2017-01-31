@@ -10,7 +10,6 @@ class BotController < ApplicationController
   end
 
   def post_webhook
-    Rails.logger.info "params = #{params}"
-    render status: 500
+    render status: 200
   end
 end
