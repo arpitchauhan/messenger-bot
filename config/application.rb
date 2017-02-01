@@ -27,5 +27,7 @@ module MyMessengerBot
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.time_zone = 'Mumbai'
+
+    Dir[File.join(Rails.root, 'lib', 'utils', '*.rb')].each { |l| require l }
   end
 end
