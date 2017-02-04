@@ -1,5 +1,4 @@
 class BotController < ApplicationController
-
   def get_webhook
     raise 'Token not set' if ENV['webhook_token'].blank?
     if params['hub.verify_token'] == ENV['webhook_token']
