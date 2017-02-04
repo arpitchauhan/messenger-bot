@@ -13,7 +13,8 @@ RSpec.describe "Bots", type: :request do
 
   describe "post /post_webhook" do
     before :each do
-      @payload = { "object"=>"page",
+      @payload = {
+                   "object"=>"page",
                    "entry"=> [
                               {
                                 "id" => "732979013420893",
@@ -26,7 +27,7 @@ RSpec.describe "Bots", type: :request do
                                                    "message"=> {
                                                                   "mid"=>"mid.1485896474420:60c6dc8842",
                                                                   "seq"=>1315338,
-                                                                  "text"=>"kutie"
+                                                                  "text"=>"Message text!"
                                                                }
                                                   }
                                                 ]
@@ -34,11 +35,29 @@ RSpec.describe "Bots", type: :request do
                               ]
                   }
 
+      post '/webhook', params: @payload
+    end
+
+    it "creates user properly" do
+      expect(Facebook::User.count).to eq(1)
+      user = Facebook::User.first
+      expect(user.facebook_id).to eq("1131196886949901")
+    end
+
+    it "creates page properly" do
+      expect(Facebook::Page.count).to eq(1)
+      user = Facebook::Page.first
+      expect(user.facebook_id).to eq("732979013420893")
     end
 
     it "creates message properly" do
-      post '/webhook', params: @payload
-      expect(response).to have_http_status(200)
+      expect(Facebook::Message.count).to eq(1)
+      message = Facebook::Message.first
+      expect(message.text).to eq("Message text!")
+      expect(message.seq).to eq(1315338)
+      expect(message.timestamp.to_i * 1000).to eq(1485896474000) # last 3 digits are lost
+      expect(message.sender).to eq(Facebook::User.last)
+      expect(message.recipient).to eq(Facebook::Page.last)
     end
   end
 end
