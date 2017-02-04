@@ -37,7 +37,7 @@ RSpec.describe "Bots", type: :request do
     end
 
     it "creates message properly" do
-      post '/webhook', @payload
+      post '/webhook', params: @payload
       expect(response).to have_http_status(200)
     end
   end

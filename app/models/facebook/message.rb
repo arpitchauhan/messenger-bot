@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: messages
+# Table name: facebook_messages
 #
 #  id           :integer          not null, primary key
 #  sender_id    :integer
@@ -13,7 +13,7 @@
 #  updated_at   :datetime         not null
 #
 
-class Message < ApplicationRecord
-  belongs_to :sender, class_name: 'Entity'
-  belongs_to :recipient, class_name: 'Entity'
+class Facebook::Message < ApplicationRecord
+  belongs_to :sender, class_name: 'Facebook::Profile'
+  belongs_to :recipient, class_name: 'Facebook::Profile'
 end

@@ -15,14 +15,7 @@ ActiveRecord::Schema.define(version: 20170201204214) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "entities", force: :cascade do |t|
-    t.string   "facebook_id"
-    t.string   "type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "messages", force: :cascade do |t|
+  create_table "facebook_messages", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.text     "text"
@@ -31,6 +24,13 @@ ActiveRecord::Schema.define(version: 20170201204214) do
     t.datetime "timestamp"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "facebook_profiles", force: :cascade do |t|
+    t.string   "facebook_id"
+    t.string   "type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

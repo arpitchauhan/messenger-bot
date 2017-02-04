@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: entities
+# Table name: facebook_profiles
 #
 #  id          :integer          not null, primary key
 #  facebook_id :string
@@ -10,15 +10,15 @@
 #
 
 FactoryGirl.define do
-  factory :entity do
+  factory :facebook_profile do
     facebook_id { Utils::Random.large_natural_number }
 
-    factory :page do
-      type 'Page'
+    factory :facebook_page do
+      type 'Facebook::Page'
     end
 
-    factory :profile do
-      type 'Profile'
+    factory :facebook_user do
+      type 'Facebook::User'
     end
   end
 end

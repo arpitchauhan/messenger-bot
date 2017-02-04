@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: entities
+# Table name: facebook_profiles
 #
 #  id          :integer          not null, primary key
 #  facebook_id :string
@@ -9,5 +9,5 @@
 #  updated_at  :datetime         not null
 #
 
-class Profile < Entity
+class Facebook::User < Facebook::Profile
 end

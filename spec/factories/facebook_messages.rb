@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: messages
+# Table name: facebook_messages
 #
 #  id           :integer          not null, primary key
 #  sender_id    :integer
@@ -14,9 +14,9 @@
 #
 
 FactoryGirl.define do
-  factory :message do
-    association :sender, factory: :entity
-    association :recipient, factory: :entity
+  factory :facebook_message do
+    association :sender, factory: :facebook_profile
+    association :recipient, factory: :facebook_profile
     text { Faker::StarWars.quote }
     mid { Utils::Random.large_natural_number }
     seq { Utils::Random.small_natural_number(:integer) }
