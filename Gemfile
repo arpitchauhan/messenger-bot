@@ -12,6 +12,8 @@ gem 'rails', '~> 5.0.1'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma'
+# Facebook unofficial SDK
+gem 'koala'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
