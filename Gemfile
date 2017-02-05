@@ -16,6 +16,8 @@ gem 'puma'
 gem 'koala'
 # Configuration made simple
 gem 'figaro'
+# Background processing
+gem 'sidekiq'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
