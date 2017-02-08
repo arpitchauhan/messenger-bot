@@ -10,9 +10,9 @@
 #
 
 FactoryGirl.define do
-  factory :facebook_profile do
+  factory :facebook_profile, class: 'Facebook::Profile' do
     facebook_id { Utils::Random.large_natural_number }
-
+    name { Faker::Name.name }
     factory :facebook_page do
       type 'Facebook::Page'
     end
