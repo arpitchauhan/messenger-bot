@@ -1,6 +1,5 @@
 ---
 :concurrency: 3
 :timeout: 30
-:pidfile: tmp/pids/sidekiq.pid
 :queues:
   - facebook_profile_fetcher
