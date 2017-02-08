@@ -2,8 +2,8 @@ class FacebookService
 
   REDIS_APP_ACCESS_TOKEN_KEY = 'facebook_app_access_token'.freeze
 
-  def initialize
-    @koala = Koala::Facebook::API.new(get_app_access_token, FacebookDefaultSettings::APP_SECRET)
+  def initialize(app_access_token = get_app_access_token)
+    @koala = Koala::Facebook::API.new(app_access_token, FacebookDefaultSettings::APP_SECRET)
   end
 
   def get_object(facebook_id)
