@@ -25,7 +25,7 @@ class FacebookService
 
   def get_app_access_token(force_refresh_of_token = false)
     if !force_refresh_of_token && $redis.exists(REDIS_APP_ACCESS_TOKEN_KEY)
-      $redis.get(REDIS_APP_ACCESS_TOKEN_KEY, token)
+      $redis.get(REDIS_APP_ACCESS_TOKEN_KEY)
     else
       token = Koala::Facebook::OAuth.new.get_app_access_token
       $redis.set(REDIS_APP_ACCESS_TOKEN_KEY, token)
