@@ -4,7 +4,6 @@ module FacebookDefaultSettings
 end
 
 Koala::Facebook::OAuth.class_eval do
-
   alias_method :initialize_without_default_settings, :initialize
   def initialize_with_default_settings(*args)
     case args.size
@@ -24,4 +23,3 @@ Koala::Facebook::OAuth.class_eval do
 
   alias_method :initialize, :initialize_with_default_settings
 end
-
