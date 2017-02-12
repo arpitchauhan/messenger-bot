@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Facebook Messenger bot written in Ruby 2.4/Rails 5! Currently, it is an on-going hobby project and not ready for actual use.
 
-Things you may want to cover:
+### Build status
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[![CircleCI](https://circleci.com/gh/arpitchauhan/messenger-bot.svg?style=svg)](https://circleci.com/gh/arpitchauhan/messenger-bot)
