@@ -60,10 +60,10 @@ class FacebookService
   end
 
   def page_id
-    ENV['facebook_page_id'].freeze
+    FacebookPageInfo::PAGE_ID
   end
 
   def page_access_token
-    ENV['facebook_page_access_token'].freeze
+    FacebookPageInfo::PAGE_ACCESS_TOKEN
   end
 end
