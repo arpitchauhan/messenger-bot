@@ -23,3 +23,5 @@ Koala::Facebook::OAuth.class_eval do
 
   alias_method :initialize, :initialize_with_default_settings
 end
+
+Koala::Utils.logger = Logger.new('log/koala.log')
