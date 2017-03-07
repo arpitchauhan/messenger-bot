@@ -11,4 +11,8 @@
 #
 
 class Facebook::Page < Facebook::Profile
+
+  def self.mine
+    find_by!(facebook_id: FacebookPageInfo::PAGE_ID)
+  end
 end
