@@ -1,4 +1,5 @@
 class FacebookService
+  attr_reader :koala
 
   REDIS_APP_ACCESS_TOKEN_KEY = 'facebook_app_access_token'.freeze
 
@@ -21,6 +22,26 @@ class FacebookService
     get_object(facebook_id)['name']
   end
 
+  def send_message(facebook_identifier, message)
+    facebook_id = facebook_identifier.is_a?(ActiveRecord::Base) ? facebook_identifier.facebook_id : facebook_identifier
+    raise 'facebook_id is mandatory' unless facebook_id
+    body = {
+      'recipient' => {
+        'id' => facebook_id
+      }.to_json,
+
+      'message' => {
+        'text' => message
+      }.to_json
+    }
+    make_call_as_page('me/messages', 'post', body)
+  end
+
+  def make_call_as_page(path, verb, options = {})
+    args = options.reverse_merge('access_token' => page_access_token)
+    Koala.make_request(path, args, verb)
+  end
+
   private
 
   def get_app_access_token(force_refresh_of_token = false)
@@ -36,5 +57,13 @@ class FacebookService
 
   def redis_app_access_token_expire_seconds
     ENV['redis_app_access_token_expire_seconds'] || 6000
+  end
+
+  def page_id
+    FacebookPageInfo::PAGE_ID
+  end
+
+  def page_access_token
+    FacebookPageInfo::PAGE_ACCESS_TOKEN
   end
 end

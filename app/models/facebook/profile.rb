@@ -18,6 +18,14 @@ class Facebook::Profile < ApplicationRecord
 
   after_create :fetch_details_from_facebook!
 
+  def messages_sent_to_my_page
+    sent_messages.where(recipient: Facebook::Page.mine)
+  end
+
+  def messages_received_from_my_page
+    received_messages.where(sender: Facebook::Page.mine)
+  end
+
   private
 
   def fetch_details_from_facebook!

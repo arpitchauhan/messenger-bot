@@ -18,12 +18,13 @@ class BotController < ApplicationController
           # check if page is recipient
           if page.facebook_id == recipient_facebook_id
             time = Utils::Facebook.convert_timestamp_to_time(message[:timestamp])
-            Facebook::Message.create!(sender: sender,
-                                      recipient: page,
-                                      timestamp: time,
-                                      text: message[:message][:text],
-                                      seq: message[:message][:seq],
-                                      mid: message[:message][:mid])
+            message = Facebook::Message.create!(sender: sender,
+                                                recipient: page,
+                                                timestamp: time,
+                                                text: message[:message][:text],
+                                                seq: message[:message][:seq],
+                                                mid: message[:message][:mid])
+            Talker.new(sender).reply(to: message)
           else
             Rails.logger.warn "Facebook::Page id #{page.facebook_id} not same as recipient id #{recipient_facebook_id}"
           end

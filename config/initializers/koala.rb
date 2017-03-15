@@ -3,6 +3,11 @@ module FacebookDefaultSettings
   APP_SECRET = ENV['facebook_app_secret'].freeze
 end
 
+module FacebookPageInfo
+  PAGE_ID = ENV['facebook_page_id'].freeze
+  PAGE_ACCESS_TOKEN = ENV['facebook_page_access_token'].freeze
+end
+
 Koala::Facebook::OAuth.class_eval do
   alias_method :initialize_without_default_settings, :initialize
   def initialize_with_default_settings(*args)
@@ -23,3 +28,5 @@ Koala::Facebook::OAuth.class_eval do
 
   alias_method :initialize, :initialize_with_default_settings
 end
+
+Koala::Utils.logger = Logger.new('log/koala.log')
